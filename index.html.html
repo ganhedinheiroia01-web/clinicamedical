@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clínica Medical — Laudos, Atestados & Mounjaro</title>
+  <style>
+    /* Paleta vibrante e estilo chamativo */
+    :root{--bg:#0b1020;--card:#071331;--accent:#ff5a5f;--accent2:#ffb86b;--glass:rgba(255,255,255,0.06);--muted:#9fb4d6}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;margin:0;background:linear-gradient(180deg,#020617 0%, #08112a 50%, #0b1020 100%);color:#e6f0ff;-webkit-font-smoothing:antialiased}
+    .container{max-width:1120px;margin:0 auto;padding:28px}
+
+    /* Top badge */
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:white}
+    .brand h1{font-size:18px;margin:0}
+
+    /* Hero */
+    .hero{display:flex;gap:28px;align-items:center;padding:18px 0}
+    .hero-left{flex:1}
+    .eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;background:linear-gradient(90deg,rgba(255,90,95,0.12),rgba(255,184,107,0.08));color:var(--accent);font-weight:700}
+    h2{font-size:44px;line-height:1.02;margin:12px 0;color:#fff;text-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    p.lead{color:var(--muted);font-size:16px;margin-bottom:18px}
+
+    /* Animated CTA group */
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;border:0;cursor:pointer;font-weight:800;text-transform:uppercase;letter-spacing:0.6px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff2d55);color:white;box-shadow:0 18px 50px rgba(255,90,95,0.14);transform:translateY(0);transition:transform .16s ease}
+    .btn-primary:hover{transform:translateY(-6px);box-shadow:0 28px 70px rgba(255,90,95,0.18)}
+    .btn-wpp{background:linear-gradient(90deg,#00c853,#00e676);color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:12px 16px;border-radius:12px}
+
+    /* Hero visual */
+    .hero-right{width:440px}
+    .card-visual{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));padding:18px;border-radius:18px;box-shadow:0 30px 80px rgba(2,6,23,0.7);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.02)}
+    .offer{display:flex;justify-content:space-between;align-items:center}
+    .price{font-size:28px;font-weight:900;color:var(--accent)}
+
+    /* Sparkles */
+    .sparkle{position:absolute;width:14px;height:14px;border-radius:6px;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.9),transparent 40%);opacity:0.9;filter:blur(6px)}
+
+    /* Services grid */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+    .service{background:var(--card);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(3,6,28,0.6)}
+    .service h4{margin:8px 0}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.04);font-weight:700;color:#dfefff}
+
+    /* Pricing */
+    .pricing{display:flex;gap:14px;margin-top:18px}
+    .price-card{flex:1;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+    .price-card .big{font-size:26px;font-weight:900;color:var(--accent)}
+
+    /* Countdown */
+    .countdown{display:inline-block;padding:8px 12px;border-radius:10px;background:rgba(255,90,95,0.08);color:var(--accent);font-weight:800;margin-left:8px}
+
+    /* Testimonials */
+    .testimonials{margin-top:22px;display:flex;gap:12px}
+    .t-card{flex:1;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px}
+
+    /* FAQ */
+    .faq{margin-top:24px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:18px;border-radius:12px}
+    .faq h3{margin-top:0}
+
+    /* Sticky footer CTA */
+    .sticky-cta{position:fixed;right:22px;bottom:22px;z-index:90}
+    .floating-wpp{position:fixed;right:22px;bottom:110px;background:linear-gradient(90deg,#00c853,#00e676);padding:14px;border-radius:999px;box-shadow:0 18px 40px rgba(0,200,83,0.14);display:flex;align-items:center;gap:10px;color:white;font-weight:700}
+
+    /* Responsive */
+    @media(max-width:980px){.services{grid-template-columns:repeat(2,1fr)}.hero{flex-direction:column}.hero-right{width:100%}.pricing{flex-direction:column}}
+    @media(max-width:640px){h2{font-size:28px}.services{grid-template-columns:1fr}}
+
+    /* Micro animations */
+    @keyframes floaty {0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    .float{animation:floaty 3s ease-in-out infinite}
+
+    /* small text */
+    small{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand"><div class="logo">CM</div><div><h1>Clínica Medical</h1><small>Laudos | Atestados | Mounjaro — Telemedicina</small></div></div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <small>Atendimentos 24/7 • Documentos com assinatura digital</small>
+        <a class="btn btn-ghost" href="#contato">Fale conosco</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-left">
+        <span class="eyebrow">Oferta Relâmpago</span>
+        <h2>Laudos e Atestados Rápidos + Acompanhamento para Mounjaro</h2>
+        <p class="lead">Consultas por vídeo com médico credenciado, emissão de laudos técnicos e atestados digitais com CRM. Prescrição e acompanhamento de tratamentos quando clinicamente indicado.</p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#checkout" onclick="location.href='#checkout'">Adquirir Agora — R$100,00</a>
+          <a class="btn btn-wpp" href="https://api.whatsapp.com/send?phone=5511999999999&text=Ol%C3%A1%2C+quero+adquirir+laudo+na+Cl%C3%ADnica+Medical" target="_blank">Agendar via WhatsApp</a>
+          <a class="btn btn-ghost" href="#faq">Como funciona</a>
+          <div class="countdown" id="countdown">00:23:41</div>
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:12px;align-items:center">
+          <div class="pill">Entrega 24-48h</div>
+          <div class="pill">Assinatura CRM</div>
+          <div class="pill">Pagamento seguro</div>
+        </div>
+
+        <div class="testimonials">
+          <div class="t-card float"><strong>"Atendimento rápido e profissional"</strong><br><small>— Mariana, SP</small></div>
+          <div class="t-card float" style="animation-delay:.4s"><strong>"Laudo aceito pelo INSS"</strong><br><small>— Carlos, RJ</small></div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card-visual">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <small>Plano Rápido</small>
+              <div class="price">R$100,00</div>
+            </div>
+            <div style="text-align:right">
+              <small>Consulta + Laudo</small>
+              <div style="font-weight:800">Pagamento seguro</div>
+            </div>
+          </div>
+          <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0">
+          <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-weight:800">Inclui:</div>
+              <small>Consulta médica • Emissão de laudo • Envio por WhatsApp</small>
+            </div>
+            <div><a class="btn btn-primary" href="#checkout">Comprar</a></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Serviços -->
+    <section class="services">
+      <div class="service">
+        <div class="pill">Laudo Médico</div>
+        <h4>Laudos para INSS e perícia</h4>
+        <p>Relatórios técnicos, embasados e prontos para uso em processos administrativos e judiciais.</p>
+      </div>
+      <div class="service">
+        <div class="pill">Atestado</div>
+        <h4>Atestados com assinatura digital</h4>
+        <p>Atestados válidos com CRM do médico responsável — entregues em PDF e via WhatsApp.</p>
+      </div>
+      <div class="service">
+        <div class="pill">Mounjaro</div>
+        <h4>Avaliação e acompanhamento</h4>
+        <p>Avaliação especializada para prescrição quando clinicamente indicado. Acompanhamento e suporte.</p>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+      <div class="price-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>Plano Express</strong><br><small>Consulta + Laudo</small></div>
+          <div class="big">R$100,00</div>
+        </div>
+        <div style="margin-top:12px"><a class="btn btn-primary" href="#checkout">Comprar Agora</a></div>
+      </div>
+      <div class="price-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>Plano Profissional</strong><br><small>Consulta + Laudo Detalhado</small></div>
+          <div class="big">R$129,90</div>
+        </div>
+        <div style="margin-top:12px"><a class="btn btn-primary" href="#checkout">Escolher Plano</a></div>
+      </div>
+      <div class="price-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>Assinatura Mensal</strong><br><small>Suporte e acompanhamento</small></div>
+          <div class="big">R$199,90</div>
+        </div>
+        <div style="margin-top:12px"><a class="btn btn-primary" href="#checkout">Assinar</a></div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h3>Perguntas Frequentes</h3>
+      <p><strong>Os atestados são aceitos pelas empresas?</strong><br>Sim — nossos atestados são assinados digitalmente com CRM válido e podem ser apresentados ao empregador ou órgão competente.</p>
+      <p><strong>Como funciona a prescrição de Mounjaro?</strong><br>Fornecemos avaliação médica; a prescrição é realizada somente quando clinicamente indicada e em conformidade com legislação e protocolos médicos. Dispensação de medicamentos segue regras legais.</p>
+      <p><strong>Prazo de entrega dos laudos?</strong><br>Normalmente 24–48h após a consulta, dependendo da complexidade. Planos expressos têm prioridade.</p>
+    </section>
+
+    <section id="checkout" style="margin-top:18px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:18px;border-radius:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <h3>Conclua sua compra com segurança</h3>
+          <p>Integramos com checkout seguro (cartões, PIX e boletos). Após o pagamento agendamos a consulta com médico.</p>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <a class="btn btn-primary" href="#" onclick="alert('Substitua pelo link do seu checkout')">Ir para o Checkout</a>
+          <a class="btn btn-wpp" href="https://api.whatsapp.com/send?phone=5511999999999&text=Ol%C3%A1%2C+quero+concluir+meu+pedido+na+Cl%C3%ADnica+Medical" target="_blank">Comprar via WhatsApp</a>
+        </div>
+      </div>
+      <small style="display:block;margin-top:8px;color:var(--muted)">* A Clínica Medical não vende medicamentos sem prescrição médica válida.</small>
+    </section>
+
+    <footer style="margin-top:24px;color:var(--muted);font-size:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div>© <strong>Clínica Medical</strong> — Telemedicina</div>
+        <div><a href="#">Termos</a> · <a href="#">Privacidade</a> · <a href="#contato">Contato</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a class="floating-wpp" href="https://api.whatsapp.com/send?phone=5511999999999&text=Ol%C3%A1%2C+quero+atendimento+na+Cl%C3%ADnica+Medical" target="_blank" aria-label="WhatsApp">WhatsApp • Fale Agora</a>
+
+  <script>
+    // Countdown (exemplo visual) - conta regressiva de 24h a partir do carregamento
+    (function(){
+      const end = Date.now() + 24*60*60*1000;
+      const el = document.getElementById('countdown');
+      function tick(){
+        const diff = Math.max(0, end - Date.now());
+        const h = String(Math.floor(diff/3600000)).padStart(2,'0');
+        const m = String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+        const s = String(Math.floor(diff%60000/1000)).padStart(2,'0');
+        el.textContent = h+':'+m+':'+s;
+        if(diff>0) requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+
+    // Small entrance animations
+    document.querySelectorAll('.float').forEach((n,i)=>{n.style.animationDelay = (i*0.3)+'s'});
+  </script>
+</body>
+</html>
+
+---
+
+  https://wa.me/556184220192?text=Preciso%20de%20uma%20receita%20m%C3%A9dica
+**R$ 150,00**  
+👉 https://wa.me/556184220192?text=Quero%20um%20atestado%20para%20INSS
+
